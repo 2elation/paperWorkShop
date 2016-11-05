@@ -28,6 +28,15 @@
             />
 
         <EditText
+            android:id="@+id/etDis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="DisplayName"
+            android:layout_marginBottom="13dp"
+            android:textColor="#603a00"
+            />
+
+        <EditText
             android:id="@+id/etUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
