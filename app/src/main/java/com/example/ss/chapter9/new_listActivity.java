@@ -10,6 +10,23 @@ import android.widget.ListView;
 public class new_listActivity extends AppCompatActivity {
 
     private ListView lvMenu;
+    static String[] topic = {"Topic News",
+            "Topic News",
+            "Topic News",
+            "Topic News",
+            "Topic News"};
+
+    static String[] date = {"5 ตุลาคม 2559",
+            "5 ตุลาคม 2559",
+            "5 ตุลาคม 2559",
+            "5 ตุลาคม 2559",
+            "5 ตุลาคม 2559"};
+
+    int[] imgId = {R.drawable.androids,
+            R.drawable.androids,
+            R.drawable.androids,
+            R.drawable.androids,
+            R.drawable.androids};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,8 +35,8 @@ public class new_listActivity extends AppCompatActivity {
 
         lvMenu = (ListView) findViewById(R.id.lvMenu);
 
-
         setEvent();
+        cusAdapter();
     }
 
     private void setEvent() {
@@ -31,6 +48,11 @@ public class new_listActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    private void cusAdapter() {
+        lvMenu = (ListView) findViewById(R.id.lvMenu);
+        lvMenu.setAdapter(new CustomAdapter(getApplicationContext(),topic,imgId,date));
     }
 
 }

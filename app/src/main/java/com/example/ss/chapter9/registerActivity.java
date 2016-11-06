@@ -44,23 +44,6 @@ public class registerActivity extends AppCompatActivity {
         setEvent();
     }
 
-    private boolean validate() {
-        //TODO validate
-        String display  = etDis.getText().toString();
-        String username = etUser.getText().toString();
-        String password = etPass.getText().toString();
-        String conpass  = etConPass.getText().toString();
-
-        if (display.isEmpty() || username.isEmpty() || password.isEmpty() || conpass.isEmpty()) {
-            return false;
-        } else if (!password.equals(conpass)){
-            return false;
-        } else {
-            return true;
-        }
-
-    }
-
     private void setEvent() {
         btnRegist.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +61,23 @@ public class registerActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private boolean validate() {
+        //TODO validate
+        String display  = etDis.getText().toString();
+        String username = etUser.getText().toString();
+        String password = etPass.getText().toString();
+        String conpass  = etConPass.getText().toString();
+
+        if (display.isEmpty() || username.isEmpty() || password.isEmpty() || conpass.isEmpty()) {
+            return false;
+        } else if (!password.equals(conpass)){
+            return false;
+        } else {
+            return true;
+        }
+
     }
 
     private class register extends AsyncTask <Void, Void, String> {
