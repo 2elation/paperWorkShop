@@ -11,6 +11,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.ss.chapter9.news.News;
 
 import java.util.List;
@@ -68,6 +69,7 @@ public class CustomAdapter extends BaseAdapter {
         News news = data.get(position);
         myHolder.tvTopic.setText(news.getTitle());
         myHolder.tvDate.setText(news.getCreateDate());
+        Glide.with(mContext).load(news.getImgUrl()).into(myHolder.imgID);
         //myHolder.imgID.setImageResource(news.getImgUrl());
         return convertView;
     }

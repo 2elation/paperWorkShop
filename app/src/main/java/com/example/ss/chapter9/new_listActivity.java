@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.ss.chapter9.news.News;
 
 import org.json.JSONArray;
@@ -59,14 +60,7 @@ public class new_listActivity extends AppCompatActivity {
     }
 
     private void setEvent() {
-        lvMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(new_listActivity.this,new_detailActivity.class);
-                i.putExtra("vocabId", (int) id );
-                startActivity(i);
-            }
-        });
+
     }
 
     private void getNews(){
@@ -111,12 +105,13 @@ public class new_listActivity extends AppCompatActivity {
                 JSONObject rootObj = new JSONObject(s);
                 if(rootObj.has("result")) {
                     JSONObject resultObj = rootObj.getJSONObject("result");
-                    if(resultObj.getInt("result") == 1) {
+                    if (resultObj.getInt("result") == 1) {
                         //TODO Call services success.
-                        JSONArray newJsonArr = resultObj.getJSONArray("new_list");
-                        if (newJsonArr != null && newJsonArr.length() > 0) {
-                            List<News> newsList = new ArrayList<>();
-                            for (int i = 0; i < newJsonArr.length() ; i++) {
+                        JSONArray newJsonArr = rootObj.getJSONArray("news_list");
+                        int sizeNews = newJsonArr.length();
+                        if (newJsonArr != null && sizeNews > 0) {
+                            final List<News> newsList = new ArrayList<>();
+                            for (int i = 0; i < sizeNews; i++) {
                                 JSONObject newJsonObj = newJsonArr.getJSONObject(i);
                                 News news = new News();
                                 news.setNewID(newJsonObj.getString("news_id"));
@@ -126,13 +121,22 @@ public class new_listActivity extends AppCompatActivity {
                                 news.setImgUrl(newJsonObj.getString("image_url"));
                                 newsList.add(news);
                             }
-                            lvMenu.setAdapter(new CustomAdapter(getApplicationContext(),newsList));
+                            lvMenu.setAdapter(new CustomAdapter(getApplicationContext(), newsList));
+                            lvMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                                    Intent i = new Intent(new_listActivity.this, new_detailActivity.class);
+                                    i.putExtra("id", newsList.get(position).getNewID());
+                                    startActivity(i);
+                                }
+                            });
                         }
-                    } else {
-                        //TODO Call services un success.
 
+                        } else {
+                            //TODO Call services un success.
+
+                        }
                     }
-                }
             }catch (JSONException ex) {
 
             }

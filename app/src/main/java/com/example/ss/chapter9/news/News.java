@@ -1,15 +1,30 @@
 package com.example.ss.chapter9.news;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by SS on 11/12/2016.
  */
 
 public class News {
+
+    @SerializedName("news_id")
     private String newID;
+
+    @SerializedName("title")
     private String title;
+
+    @SerializedName("create_date")
     private String createDate;
+
+    @SerializedName("short_description")
     private String shortDescription;
+
+    @SerializedName("image_url")
     private String imgUrl;
+
+    @SerializedName("detail")
+    private  String detail;
 
     public String getNewID() {
         return newID;
@@ -49,5 +64,13 @@ public class News {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 }

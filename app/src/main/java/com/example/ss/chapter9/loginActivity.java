@@ -133,7 +133,7 @@ public class loginActivity extends AppCompatActivity {
                         Intent i = new Intent(loginActivity.this,new_listActivity.class);
                         startActivity(i);
                     } else {
-                        Toast.makeText(loginActivity.this,resultObj.getString("login result_desc"),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(loginActivity.this,resultObj.getString("result_desc"),Toast.LENGTH_SHORT).show();
                     }
                 }
             }catch (JSONException ex) {
