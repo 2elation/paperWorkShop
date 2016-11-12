@@ -51,10 +51,10 @@ public class registerActivity extends AppCompatActivity {
 
                 if(validate()){
                     //TODO
-                    new register(etDis.getText().toString(),
-                            etUser.getText().toString(),
+                    new register(etUser.getText().toString(),
                             etPass.getText().toString(),
-                            etConPass.getText().toString()).execute();
+                            etConPass.getText().toString(),
+                            etDis.getText().toString()).execute();
 
                 } else {
                     Toast.makeText(registerActivity.this, "กรุณากรอกข้อมูลให้ครบ",Toast.LENGTH_SHORT).show();
@@ -65,14 +65,14 @@ public class registerActivity extends AppCompatActivity {
 
     private boolean validate() {
         //TODO validate
-        String display  = etDis.getText().toString();
         String username = etUser.getText().toString();
         String password = etPass.getText().toString();
-        String conpass  = etConPass.getText().toString();
+        String passwordcon  = etConPass.getText().toString();
+        String display  = etDis.getText().toString().trim();
 
-        if (display.isEmpty() || username.isEmpty() || password.isEmpty() || conpass.isEmpty()) {
+        if (display.isEmpty() || username.isEmpty() || password.isEmpty() || passwordcon.isEmpty()) {
             return false;
-        } else if (!password.equals(conpass)){
+        } else if (!password.equals(passwordcon)){
             return false;
         } else {
             return true;
@@ -84,14 +84,14 @@ public class registerActivity extends AppCompatActivity {
 
         private String username;
         private String password;
-        private String conpass;
-        private String display;
+        private String passwordcon;
+        private String displayname;
 
-        public register(String username, String password, String conpass, String display) {
+        public register(String username, String password, String passwordcon, String displayname) {
             this.username = username;
             this.password = password;
-            this.conpass  = conpass;
-            this.display  = display;
+            this.passwordcon  = passwordcon;
+            this.displayname  = displayname;
         }
 
         @Override
@@ -108,7 +108,8 @@ public class registerActivity extends AppCompatActivity {
                 RequestBody requestBody = new FormBody.Builder()
                         .add("username",username)
                         .add("password",password)
-                        .add("display",display)
+                        .add("passowrd_con",passwordcon)
+                        .add("display_name",displayname)
                         .build();
 
                 request = new Request.Builder()

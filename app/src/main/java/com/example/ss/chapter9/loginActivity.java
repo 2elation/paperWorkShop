@@ -33,7 +33,7 @@ public class loginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         etUsername = (EditText) findViewById(R.id.etUsername);
-        etPassword = (EditText) findViewById(R.id.etPassword);
+        etPassword  = (EditText) findViewById(R.id.etPassword);
         btnLogin    = (Button) findViewById(R.id.btnLogin);
         btnRegister = (Button) findViewById(R.id.btnRegister);
 
@@ -133,7 +133,7 @@ public class loginActivity extends AppCompatActivity {
                         Intent i = new Intent(loginActivity.this,new_listActivity.class);
                         startActivity(i);
                     } else {
-                        Toast.makeText(loginActivity.this,resultObj.getString("result_desc"),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(loginActivity.this,resultObj.getString("login result_desc"),Toast.LENGTH_SHORT).show();
                     }
                 }
             }catch (JSONException ex) {

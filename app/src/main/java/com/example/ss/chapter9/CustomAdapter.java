@@ -1,5 +1,6 @@
 package com.example.ss.chapter9;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,28 +11,30 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ss.chapter9.news.News;
+
+import java.util.List;
+
 /**
  * Created by SS on 11/6/2016.
  */
 
 public class CustomAdapter extends BaseAdapter {
     Context mContext;
-    String[] topic;
-    String[] date;
-    int[] imgId;
     ViewHolder myHolder = null;
+    private Activity activity;
+    private LayoutInflater infalter = null;
+    private List<News> data;
 
 
-    public CustomAdapter(Context context, String[] topic, int[] imgId, String[] date) {
-        this.mContext = context;
-        this.topic = topic;
-        this.date = date;
-        this.imgId = imgId;
+    public CustomAdapter(Context mContext, List<News> data) {
+        this.mContext = mContext;
+        this.data = data;
     }
 
     @Override
     public int getCount() {
-        return topic.length;
+        return data.size();
     }
 
     @Override
@@ -62,9 +65,10 @@ public class CustomAdapter extends BaseAdapter {
         }
 
         //ต้อง set ค่าที่จะนำมาแสดงผล
-        myHolder.tvTopic.setText(topic[position]);
-        myHolder.tvDate.setText(date[position]);
-        myHolder.imgID.setImageResource(imgId[position]);
+        News news = data.get(position);
+        myHolder.tvTopic.setText(news.getTitle());
+        myHolder.tvDate.setText(news.getCreateDate());
+        //myHolder.imgID.setImageResource(news.getImgUrl());
         return convertView;
     }
 
